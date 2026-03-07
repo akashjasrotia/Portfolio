@@ -1,0 +1,97 @@
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,900&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,300,400,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-dark: #0a0a0a;
+    --color-light: #f0f0f0;
+    --color-accent: #ccff00;
+    --color-muted: #5a5a5a;
+    --color-surface: #111111;
+  }
+
+  .light {
+    --color-dark: #f0f0f0;
+    --color-light: #0a0a0a;
+    --color-accent: #ff3366;
+    /* Vibrant pink/red for light mode */
+    --color-muted: #888888;
+    --color-surface: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-light font-body overflow-x-hidden transition-colors duration-500;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent text-dark;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-outline {
+    -webkit-text-stroke: 1px var(--color-light);
+    opacity: 0.4;
+    color: transparent;
+    transition: all 0.5s ease-in-out;
+    transition-delay: 0.7s;
+    /* Hold the glow when mouse leaves */
+  }
+
+  .text-outline-accent {
+    -webkit-text-stroke: 1px var(--color-accent);
+    color: transparent;
+  }
+
+  .text-outline-hover:hover {
+    color: var(--color-accent);
+    -webkit-text-stroke: 0px;
+    opacity: 1;
+    transition: all 0.2s ease-out;
+    transition-delay: 0s;
+    /* Glow instantly on hover */
+  }
+
+  /* For smooth revealing */
+  .clip-reveal {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}

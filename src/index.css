@@ -53,7 +53,7 @@
     opacity: 0.4;
     color: transparent;
     transition: all 0.5s ease-in-out;
-    transition-delay: 0.7s;
+    transition-delay: 0.5s;
     /* Hold the glow when mouse leaves */
   }
 

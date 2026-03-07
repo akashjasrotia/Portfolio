@@ -45,7 +45,7 @@ const Navbar = () => {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent ${
-        scrolled ? 'bg-dark/80 backdrop-blur-md border-white/10 py-4' : 'bg-transparent py-6'
+        scrolled ? 'bg-dark/80 backdrop-blur-md border-light/10 py-4' : 'bg-transparent py-6'
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -59,7 +59,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-8 items-center bg-surface/50 border border-white/10 px-8 py-3 rounded-full backdrop-blur-md">
+        <nav className="hidden md:flex gap-8 items-center bg-surface/50 border border-light/10 px-8 py-3 rounded-full backdrop-blur-md">
           {navLinks.map((link) => (
             <Link
               key={link.to}
@@ -73,7 +73,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <div className="w-[1px] h-5 bg-white/20 mx-2"></div>
+          <div className="w-[1px] h-5 bg-light/20 mx-2"></div>
           <button 
             onClick={toggleTheme} 
             className="text-light/70 hover:text-accent transition-colors focus:outline-none flex items-center justify-center cursor-pointer"

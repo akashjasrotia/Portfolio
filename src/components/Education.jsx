@@ -29,7 +29,8 @@ const Education = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const blocks = gsap.utils.toArray('.edu-block');
+    let ctx = gsap.context(() => {
+      const blocks = gsap.utils.toArray('.edu-block');
     
     blocks.forEach((block, i) => {
       gsap.fromTo(block, 
@@ -68,13 +69,15 @@ const Education = () => {
       );
     });
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section id="education" ref={containerRef} className="py-24 md:py-48 px-6 md:px-12 bg-dark">
       <div className="container mx-auto max-w-7xl">
-        <h2 className="font-mono text-sm uppercase tracking-widest text-accent mb-16 text-center">
+        <h2 className="font-mono text-base md:text-lg uppercase tracking-widest text-accent mb-16 text-center">
           [ 05 — Academic Journey ]
         </h2>
 

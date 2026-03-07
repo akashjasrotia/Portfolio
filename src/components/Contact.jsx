@@ -10,6 +10,7 @@ const Contact = () => {
   const textRef = useRef(null);
 
   useEffect(() => {
+    let ctx = gsap.context(() => {
     // Reveal text from bottom
     gsap.fromTo(textRef.current.querySelectorAll('.char'),
       { y: 200, opacity: 0 },
@@ -27,7 +28,9 @@ const Contact = () => {
       }
     );
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   const title = "LET'S TALK".split("");
@@ -38,7 +41,7 @@ const Contact = () => {
         <div className="flex flex-col justify-between h-full min-h-[60vh]">
           
           <div className="mb-24">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-dark/60 mb-8 font-bold">
+            <h2 className="font-mono text-base md:text-lg uppercase tracking-widest text-dark/60 mb-8 font-bold">
               [ 06 — Contact ]
             </h2>
             <div className="overflow-hidden">

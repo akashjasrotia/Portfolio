@@ -14,6 +14,7 @@ const Hero = () => {
   const decoRef = useRef(null);
 
   useEffect(() => {
+    let ctx = gsap.context(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
     tl.fromTo(
@@ -54,9 +55,9 @@ const Hero = () => {
       }
     });
 
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -107,13 +108,19 @@ const Hero = () => {
             duration={800}
             className="group flex items-center gap-4 cursor-pointer"
           >
-            <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-accent group-hover:border-accent group-hover:text-dark transition-all duration-300">
+            <div className="w-16 h-16 rounded-full border border-light/20 flex items-center justify-center group-hover:bg-accent group-hover:border-accent group-hover:text-dark transition-all duration-300">
               <ArrowDownRight className="group-hover:rotate-[-45deg] transition-transform duration-300" />
             </div>
             <span className="font-heading text-xl uppercase tracking-wider font-bold group-hover:text-accent transition-colors">
               Explore
             </span>
           </Link>
+        </div>
+
+        {/* Steph Curry Secondary Photo */}
+        <div className="absolute right-0 top-32 hidden lg:block w-48 h-48 xl:w-64 xl:h-64 rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 border border-light/20 bg-light/5 z-0 group">
+          <img src="/steph.jpg" alt="Steph Curry Overlay" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent rounded-full transition-colors z-10 pointer-events-none"></div>
         </div>
       </div>
 

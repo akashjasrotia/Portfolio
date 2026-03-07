@@ -14,7 +14,8 @@ const About = () => {
   const words = text.split(" ");
 
   useEffect(() => {
-    const wordElements = textRef.current.querySelectorAll('.word');
+    let ctx = gsap.context(() => {
+      const wordElements = textRef.current.querySelectorAll('.word');
     
     gsap.fromTo(wordElements, 
       { opacity: 0.1, y: 20 },
@@ -26,7 +27,7 @@ const About = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top 70%',
-          end: 'bottom 40%',
+          end: 'top 50%',
           scrub: 1,
         }
       }
@@ -46,9 +47,9 @@ const About = () => {
       }
     );
 
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -58,10 +59,10 @@ const About = () => {
           {/* Section Marker and Info */}
           <div className="w-full md:w-1/4 flex flex-col gap-12">
             <div>
-              <h2 className="font-mono text-sm uppercase tracking-widest text-accent mb-4">
+              <h2 className="font-mono text-base md:text-lg uppercase tracking-widest text-accent mb-4">
                 [ 01 — About ]
               </h2>
-              <div ref={lineRef} className="w-full h-[1px] bg-white/20 origin-left"></div>
+              <div ref={lineRef} className="w-full h-[1px] bg-light/20 origin-left"></div>
             </div>
 
             {/* Added Contact Info Block */}

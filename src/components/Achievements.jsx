@@ -25,7 +25,8 @@ const Achievements = () => {
   const rightRef = useRef(null);
 
   useEffect(() => {
-    // Pin left side and scroll right side
+    let ctx = gsap.context(() => {
+      // Pin left side and scroll right side
     ScrollTrigger.matchMedia({
       "(min-width: 768px)": function() {
         gsap.to(leftRef.current, {
@@ -58,7 +59,9 @@ const Achievements = () => {
       );
     });
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -68,7 +71,7 @@ const Achievements = () => {
         {/* Left Side: Pinned Titles */}
         <div className="w-full md:w-5/12 h-auto md:h-screen flex flex-col justify-center" ref={leftRef}>
           <div className="mb-12">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-accent mb-4">
+            <h2 className="font-mono text-base md:text-lg uppercase tracking-widest text-accent mb-4">
               [ 04 — Milestones ]
             </h2>
             <h3 className="font-heading text-6xl md:text-8xl lg:text-9xl uppercase font-bold leading-[0.85] tracking-tighter">
@@ -84,7 +87,7 @@ const Achievements = () => {
           
           {/* Achievements Block */}
           <div>
-            <div className="flex items-center gap-4 mb-12 border-b border-white/10 pb-6 reveal-item">
+            <div className="flex items-center gap-4 mb-12 border-b border-light/10 pb-6 reveal-item">
               <Trophy className="text-accent" size={32} />
               <h4 className="font-heading text-4xl mt-2 uppercase tracking-tight">Achievements</h4>
             </div>
@@ -103,7 +106,7 @@ const Achievements = () => {
 
           {/* Certificates Block */}
           <div>
-            <div className="flex items-center gap-4 mb-12 border-b border-white/10 pb-6 reveal-item">
+            <div className="flex items-center gap-4 mb-12 border-b border-light/10 pb-6 reveal-item">
               <FileBadge className="text-accent" size={32} />
               <h4 className="font-heading text-4xl mt-2 uppercase tracking-tight">Certifications</h4>
             </div>
@@ -124,7 +127,7 @@ const Achievements = () => {
                       </p>
                     )}
                   </div>
-                  <div className="mt-6 md:mt-0 font-mono text-sm text-light/60 uppercase tracking-widest px-4 py-2 border border-white/10 rounded-full">
+                  <div className="mt-6 md:mt-0 font-mono text-sm text-light/60 uppercase tracking-widest px-4 py-2 border border-light/10 rounded-full">
                     {cert.date}
                   </div>
                 </div>

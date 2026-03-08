@@ -74,7 +74,7 @@ const Contact = () => {
 
             <div className="flex flex-col gap-4">
               <h4 className="font-mono text-sm tracking-widest font-bold uppercase mb-2">Socials</h4>
-              <a href="https://linkedin.com/akash-jasrotia" target="_blank" rel="noreferrer" className="group flex items-center justify-between border-b border-dark/20 pb-4 hover:border-dark transition-colors">
+              <a href="https://www.linkedin.com/in/akash-jasrotia/" target="_blank" rel="noreferrer" className="group flex items-center justify-between border-b border-dark/20 pb-4 hover:border-dark transition-colors">
                 <span>LinkedIn</span>
                 <Linkedin size={20} className="group-hover:scale-110 transition-transform" />
               </a>

@@ -10,6 +10,8 @@ import {
 import { FaJava, FaCuttlefish, FaCode, FaCss3Alt } from 'react-icons/fa';
 import { TbBrandFramerMotion } from 'react-icons/tb';
 
+import TextRoll from './TextRoll';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const skillsData = [
@@ -119,7 +121,7 @@ const Skills = () => {
           {skillsData.map((group, idx) => (
             <div key={idx} className="skill-category w-full">
               <h3 className="skill-title font-heading text-3xl md:text-5xl uppercase tracking-tighter border-b border-light/20 pb-6 mb-8 text-light/40">
-                {group.category}
+                <TextRoll className="text-inherit">{group.category}</TextRoll>
               </h3>
               <div className="skill-items-container flex flex-wrap gap-x-8 md:gap-x-12 gap-y-4 md:gap-y-6">
                 {group.items.map((item, i) => (
@@ -128,8 +130,9 @@ const Skills = () => {
                     className="skill-item flex items-center text-2xl sm:text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-heading uppercase font-bold tracking-tighter text-outline hover:text-outline-hover transition-all duration-300 cursor-default cursor-crosshair group"
                   >
                     <item.icon className="mr-3 md:mr-6 text-[0.8em] text-light opacity-50 group-hover:opacity-100 group-hover:text-accent  transition-all duration-300" />
-                    {item.name}
-                  </div>
+                    <TextRoll className="text-inherit transition-all duration-300 leading-none py-2">
+                      {item.name}
+                    </TextRoll>                  </div>
                 ))}
               </div>
             </div>

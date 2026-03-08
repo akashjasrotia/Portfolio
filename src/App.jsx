@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import Loader from './components/Loader';
+import HeroProfileSection from './components/HeroProfileSection';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -15,12 +16,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <ReactLenis root>
-      <div className="bg-dark min-h-screen text-light font-body selection:bg-accent selection:text-dark">
-        <Navbar />
-        <main>
-          <Hero />
+      {loading ? (
+        <Loader onLoadingComplete={() => setLoading(false)} />
+      ) : (
+        <div className="bg-dark min-h-screen text-light font-body selection:bg-accent selection:text-dark">
+          <Navbar />
+          <main>
+          <HeroProfileSection />
           <About />
           <Skills />
           <Projects />
@@ -29,6 +35,7 @@ function App() {
           <Contact />
         </main>
       </div>
+      )}
     </ReactLenis>
   );
 }

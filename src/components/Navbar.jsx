@@ -1,21 +1,30 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
-const navLinks = [
-  { name: 'About', to: 'about' },
-  { name: 'Skills', to: 'skills' },
-  { name: 'Projects', to: 'projects' },
-  { name: 'Achievements', to: 'achievements' },
-  { name: 'Education', to: 'education' },
-  { name: 'Contact', to: 'contact' },
+const sections = [
+  { name: 'Home', to: 'home', index: 0 },
+  { name: 'About', to: 'about', index: 5 },
+  { name: 'Skills', to: 'skills', index: 10 },
+  { name: 'Projects', to: 'projects', index: 15 },
+  { name: 'Achievements', to: 'achievements', index: 20 },
+  { name: 'Education', to: 'education', index: 25 },
+  { name: 'Contact', to: 'contact', index: 30 },
 ];
+
+const totalTicks = 31;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [offsets, setOffsets] = useState(sections.map((_, i) => i * 1000)); // Default fallback array
+
+  const { scrollY } = useScroll();
+  
+  const tickPercentages = sections.map(s => `${(s.index / (totalTicks - 1)) * 100}%`);
+  const thumbLeft = useTransform(scrollY, offsets, tickPercentages);
 
   useEffect(() => {
     // Check initial user preference on load
@@ -27,7 +36,47 @@ const Navbar = () => {
 
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Dynamic offset calculations for correct scroll pill mapping
+    const updateOffsets = () => {
+      // Delay slightly to let GSAP initialize its pin spacers properly
+      setTimeout(() => {
+        let newOffsets = sections.map((sec) => {
+          const el = document.getElementById(sec.to);
+          return el ? el.offsetTop || (el.getBoundingClientRect().top + window.scrollY) : 0;
+        });
+        
+        // Final section (Contact) mapping to maximum scroll height to ensure it hits 100%
+        const maxScroll = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        ) - window.innerHeight;
+        
+        if (newOffsets.length > 0) {
+           newOffsets[newOffsets.length - 1] = Math.max(newOffsets[newOffsets.length - 1], maxScroll);
+        }
+        
+        // Framer motion's useTransform input array requires strictly ascending monotonic values
+        for(let i = 1; i < newOffsets.length; i++) {
+          if (newOffsets[i] <= newOffsets[i - 1]) {
+            newOffsets[i] = newOffsets[i - 1] + 1; // force minimal strictly ascending difference
+          }
+        }
+        
+        setOffsets(newOffsets);
+      }, 500); // 500ms allows initial layouts and fonts to fully load
+    };
+
+    updateOffsets();
+    window.addEventListener('resize', updateOffsets);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateOffsets);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -58,30 +107,59 @@ const Navbar = () => {
           AJ.
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-8 items-center bg-surface/50 border border-light/10 px-8 py-3 rounded-full backdrop-blur-md">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              smooth={true}
-              duration={800}
-              spy={true}
-              activeClass="text-accent"
-              className="font-mono text-sm uppercase tracking-wider text-light/70 hover:text-accent transition-colors cursor-pointer"
-            >
-              {link.name}
-            </Link>
-          ))}
-          <div className="w-[1px] h-5 bg-light/20 mx-2"></div>
+        {/* Desktop Nav (Pill) */}
+        <div className="hidden md:flex items-center gap-4">
+          <nav className="flex items-center px-6 h-[56px] bg-surface rounded-full border border-light/10 shadow-xl backdrop-blur-md">
+            <div className="relative flex items-center">
+              {/* Ticks Container */}
+              <div className="flex items-center gap-[6px]">
+                {Array.from({ length: totalTicks }).map((_, i) => {
+                  const isMainTick = i % 5 === 0;
+                  const section = sections.find(s => s.index === i);
+                  
+                  if (isMainTick && section) {
+                    return (
+                      <Link
+                        key={i}
+                        to={section.to}
+                        smooth={true}
+                        duration={800}
+                        className="group relative flex items-center justify-center cursor-pointer h-10 w-2 z-20"
+                      >
+                        <div className="w-[2px] h-[20px] bg-light rounded-full group-hover:scale-y-125 transition-transform duration-300" />
+                        <div className="absolute -bottom-12 opacity-0 group-hover:opacity-100 transition-opacity text-[11px] font-mono tracking-widest font-bold uppercase whitespace-nowrap bg-surface text-light px-4 py-2 rounded-lg border border-light/10 pointer-events-none drop-shadow-xl z-50">
+                          {section.name}
+                        </div>
+                      </Link>
+                    );
+                  }
+                  
+                  return (
+                    <div key={i} className="flex items-center justify-center h-10 w-2 pointer-events-none z-0">
+                      <div className="w-[2px] h-[10px] bg-light/20 rounded-full" />
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {/* Progress Thumb Track */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-[1px] right-[1px] h-[24px] pointer-events-none">
+                <motion.div 
+                  className="absolute top-0 w-[12px] h-[24px] bg-accent rounded-full z-10 -ml-[6px]"
+                  style={{ left: thumbLeft }}
+                />
+              </div>
+            </div>
+          </nav>
+          
           <button 
             onClick={toggleTheme} 
-            className="text-light/70 hover:text-accent transition-colors focus:outline-none flex items-center justify-center cursor-pointer"
+            className="w-[56px] h-[56px] flex items-center justify-center bg-surface rounded-full border border-light/10 text-light/70 hover:text-accent transition-colors focus:outline-none shadow-xl cursor-pointer backdrop-blur-md"
             aria-label="Toggle Theme"
           >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-        </nav>
+        </div>
 
         {/* Mobile Toggle & Theme */}
         <div className="flex items-center gap-6 md:hidden z-50">
@@ -109,7 +187,7 @@ const Navbar = () => {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-0 left-0 w-full h-screen bg-dark flex flex-col items-center justify-center gap-8"
             >
-              {navLinks.map((link) => (
+              {sections.filter(s => s.to !== 'home').map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}

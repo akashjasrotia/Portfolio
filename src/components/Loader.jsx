@@ -40,7 +40,7 @@ const Loader = ({ onLoadingComplete }) => {
         className="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center overflow-hidden"
       >
         {/* Background Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-accent/20 dark:bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="flex flex-col items-center justify-center relative z-10 w-full max-w-sm px-6">
           {/* Main Loading Text */}
@@ -52,7 +52,7 @@ const Loader = ({ onLoadingComplete }) => {
               className="text-3xl md:text-5xl font-heading font-black text-light uppercase tracking-tighter text-center"
             >
               Good things<br/>
-              <span className="text-outline-accent">take time.</span>
+              <span className="text-transparent" style={{ WebkitTextStroke: '1px var(--color-light)', opacity: 0.5 }}>take time.</span>
             </motion.h2>
           </div>
 

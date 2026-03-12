@@ -18,7 +18,7 @@ const About = () => {
       const wordElements = textRef.current.querySelectorAll('.word');
     
     gsap.fromTo(wordElements, 
-      { opacity: 0.1, y: 20 },
+      { opacity: 0, y: -10 },
       {
         opacity: 1,
         y: 0,

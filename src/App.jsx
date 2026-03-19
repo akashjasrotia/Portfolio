@@ -24,9 +24,9 @@ function App() {
       {loading ? (
         <Loader onLoadingComplete={() => setLoading(false)} />
       ) : (
-        <div className="bg-transparent min-h-screen text-light font-body selection:bg-accent selection:text-dark animate-fade-in-up relative z-0">
+        <div className="bg-transparent min-h-screen text-light font-body selection:bg-accent selection:text-dark relative z-0">
           <HeroCanvas />
-          <div className="fixed inset-0 bg-dark/80 pointer-events-none z-[-1]" />
+          <div className="fixed inset-0  pointer-events-none z-[-1]" />
           <Navbar />
           <main>
           <HeroProfileSection />

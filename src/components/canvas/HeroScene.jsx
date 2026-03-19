@@ -101,7 +101,7 @@ const HeroScene = () => {
       <group ref={groupRef}>
         {/* Distorted central object */}
         <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-          <mesh position={[3, 1, -2]} visible={!theme.isLightMode}>
+          <mesh position={[3, 1, -2]}>
             <torusKnotGeometry args={[1.8, 0.5, 128, 32]} />
             <MeshDistortMaterial 
               color={theme.dark} 
@@ -120,7 +120,7 @@ const HeroScene = () => {
         
         {/* Wireframe secondary object */}
         <Float speed={1.5} rotationIntensity={2} floatIntensity={2}>
-          <mesh position={[-4, -1, -3]} visible={!theme.isLightMode}>
+          <mesh position={[-4, -1, -3]}>
             <icosahedronGeometry args={[2.5, 1]} />
             <meshStandardMaterial color="#00f0ff" wireframe opacity={theme.isLightMode ? 0.05 : 0.5} transparent />
           </mesh>
@@ -128,7 +128,7 @@ const HeroScene = () => {
 
         {/* Small accent object */}
         <Float speed={3} rotationIntensity={1.5} floatIntensity={3}>
-          <mesh position={[4, -3, 1]} scale={0.6} visible={!theme.isLightMode}>
+          <mesh position={[4, -3, 1]} scale={0.6}>
             <octahedronGeometry args={[1, 0]} />
             <meshStandardMaterial color={theme.accent} wireframe opacity={theme.isLightMode ? 0.05 : 0.6} transparent />
           </mesh>

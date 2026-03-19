@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Loader from './components/Loader';
 import HeroProfileSection from './components/HeroProfileSection';
+import HeroCanvas from './components/canvas/HeroCanvas';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -23,7 +24,9 @@ function App() {
       {loading ? (
         <Loader onLoadingComplete={() => setLoading(false)} />
       ) : (
-        <div className="bg-dark min-h-screen text-light font-body selection:bg-accent selection:text-dark">
+        <div className="bg-transparent min-h-screen text-light font-body selection:bg-accent selection:text-dark animate-fade-in-up relative z-0">
+          <HeroCanvas />
+          <div className="fixed inset-0 bg-dark/80 pointer-events-none z-[-1]" />
           <Navbar />
           <main>
           <HeroProfileSection />

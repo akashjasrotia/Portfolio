@@ -102,7 +102,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" ref={containerRef} className="h-screen bg-dark overflow-hidden flex items-center relative">
+    <section id="projects" ref={containerRef} className="h-screen bg-transparent overflow-hidden flex items-center relative">
       <div className="absolute top-12 md:top-24 left-6 md:left-12 z-20">
         <h2 className="font-mono text-base md:text-lg uppercase tracking-widest text-accent mb-4">
           [ 03 — Selected Works ]

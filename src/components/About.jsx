@@ -53,7 +53,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={containerRef} className="py-32 md:py-48 px-6 md:px-12 bg-dark">
+    <section id="about" ref={containerRef} className="py-32 md:py-48 px-6 md:px-12 bg-transparent">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row gap-16 md:gap-32">
           {/* Section Marker and Info */}

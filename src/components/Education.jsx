@@ -6,10 +6,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
-    institution: 'Lovely Professional University',
-    degree: 'B.Tech Computer Science and Engineering',
-    score: 'CGPA: 8.2',
-    duration: 'Aug 2023 – Jul 2027',
+    institution: 'Mount Carmel School Bhunga',
+    degree: 'Matriculation (10th Grade)',
+    score: '82%',
+    duration: 'Apr 2017 – Mar 2020',
   },
   {
     institution: 'Triple M Public School Hoshiarpur',
@@ -18,10 +18,10 @@ const educationData = [
     duration: 'Apr 2020 – Mar 2022',
   },
   {
-    institution: 'Mount Carmel School Bhunga',
-    degree: 'Matriculation (10th Grade)',
-    score: '82%',
-    duration: 'Apr 2017 – Mar 2020',
+    institution: 'Lovely Professional University',
+    degree: 'B.Tech Computer Science and Engineering',
+    score: 'CGPA: 8.2',
+    duration: 'Aug 2023 – Jul 2027',
   }
 ];
 
@@ -75,7 +75,7 @@ const Education = () => {
   }, []);
 
   return (
-    <section id="education" ref={containerRef} className="py-24 md:py-48 px-6 md:px-12 bg-dark">
+    <section id="education" ref={containerRef} className="py-24 md:py-48 px-6 md:px-12 bg-transparent">
       <div className="container mx-auto max-w-7xl">
         <h2 className="font-mono text-base md:text-lg uppercase tracking-widest text-accent mb-16 text-center">
           [ 05 — Academic Journey ]

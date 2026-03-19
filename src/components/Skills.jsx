@@ -109,7 +109,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" ref={containerRef} className="py-24 md:py-48 px-6 md:px-12 bg-dark relative border-t border-light/10">
+    <section id="skills" ref={containerRef} className="py-24 md:py-48 px-6 md:px-12 bg-transparent relative border-t border-light/10">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-20">
             <h2 className="font-mono text-base md:text-lg uppercase tracking-widest text-accent mb-4">

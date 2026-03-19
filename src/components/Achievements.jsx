@@ -65,7 +65,7 @@ const Achievements = () => {
   }, []);
 
   return (
-    <section id="achievements" ref={containerRef} className="py-24 md:py-0 pb-24 px-6 md:px-12 bg-dark relative min-h-screen">
+    <section id="achievements" ref={containerRef} className="py-24 md:py-0 pb-24 px-6 md:px-12 bg-transparent relative min-h-screen">
       <div className="container mx-auto max-w-7xl flex flex-col md:flex-row gap-12 md:gap-24 relative">
         
         {/* Left Side: Pinned Titles */}

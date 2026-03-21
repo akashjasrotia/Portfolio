@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Download } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 const sections = [
@@ -159,6 +159,18 @@ const Navbar = () => {
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
+
+          <a
+            href="/cv.pdf"
+            download="Akash_Jasrotia_CV.pdf"
+            className="group relative h-[56px] px-6 flex items-center justify-center gap-2 border border-accent/40 bg-accent/10 font-bold tracking-wide rounded-full shadow-xl transition-all duration-400 overflow-hidden cursor-pointer"
+          >
+            <div className="absolute inset-0 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-0 bg-accent" />
+            <span className="relative z-10 text-light group-hover:text-dark transition-colors duration-300 flex items-center gap-2">
+              <Download size={20} />
+              <span>CV</span>
+            </span>
+          </a>
         </div>
 
         {/* Mobile Toggle & Theme */}
@@ -199,6 +211,19 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
+
+              <a
+                href="/cv.pdf"
+                download="Akash_Jasrotia_CV.pdf"
+                onClick={() => setIsOpen(false)}
+                className="group relative mt-4 flex items-center gap-3 border border-accent/40 bg-accent/10 px-8 py-4 rounded-full font-heading text-3xl font-bold uppercase tracking-tighter transition-all duration-400 overflow-hidden cursor-pointer"
+              >
+                <div className="absolute inset-0 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-0 bg-accent" />
+                <span className="relative z-10 text-light group-hover:text-dark transition-colors duration-300 flex items-center gap-3">
+                  <Download size={28} />
+                  Download CV
+                </span>
+              </a>
             </motion.div>
           )}
         </AnimatePresence>

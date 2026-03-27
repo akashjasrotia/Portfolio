@@ -160,9 +160,8 @@ const Navbar = () => {
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          <a
-            href="/cv.pdf"
-            download="Akash_Jasrotia_CV.pdf"
+          <a target='_blank'
+            href="https://drive.google.com/file/d/11pufaccfcve_kcvt_poyodKwNbRJUkG_/view?usp=drive_link"
             className="group relative h-[56px] px-6 flex items-center justify-center gap-2 border border-accent/40 bg-accent/10 font-bold tracking-wide rounded-full shadow-xl transition-all duration-400 overflow-hidden cursor-pointer"
           >
             <div className="absolute inset-0 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-0 bg-accent" />
@@ -213,8 +212,7 @@ const Navbar = () => {
               ))}
 
               <a
-                href="/cv.pdf"
-                download="Akash_Jasrotia_CV.pdf"
+                href="https://drive.google.com/file/d/11pufaccfcve_kcvt_poyodKwNbRJUkG_/view?usp=drive_link"
                 onClick={() => setIsOpen(false)}
                 className="group relative mt-4 flex items-center gap-3 border border-accent/40 bg-accent/10 px-8 py-4 rounded-full font-heading text-3xl font-bold uppercase tracking-tighter transition-all duration-400 overflow-hidden cursor-pointer"
               >

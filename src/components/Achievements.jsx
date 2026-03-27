@@ -15,8 +15,8 @@ const certificates = [
 
 const achievements = [
   'Solved 250+ problems on LeetCode, HackerRank, GeeksforGeeks',
-  'Filed a patent: "AI Language Learning App Using Real-Time Performance Analyzer"',
-  'Participated in Binary Blitz Hackathon at LPU'
+  // 'Filed a patent: "AI Language Learning App Using Real-Time Performance Analyzer"',
+  // 'Participated in Binary Blitz Hackathon at LPU'
 ];
 
 const Achievements = () => {

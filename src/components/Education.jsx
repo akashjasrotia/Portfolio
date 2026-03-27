@@ -6,10 +6,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
-    institution: 'Mount Carmel School Bhunga',
-    degree: 'Matriculation (10th Grade)',
-    score: '82%',
-    duration: 'Apr 2017 – Mar 2020',
+    institution: 'Lovely Professional University',
+    degree: 'B.Tech Computer Science and Engineering',
+    score: 'CGPA: 8.2',
+    duration: 'Aug 2023 – Jul 2027',
   },
   {
     institution: 'Triple M Public School Hoshiarpur',
@@ -18,11 +18,11 @@ const educationData = [
     duration: 'Apr 2020 – Mar 2022',
   },
   {
-    institution: 'Lovely Professional University',
-    degree: 'B.Tech Computer Science and Engineering',
-    score: 'CGPA: 8.2',
-    duration: 'Aug 2023 – Jul 2027',
-  }
+    institution: 'Mount Carmel School Bhunga',
+    degree: 'Matriculation (10th Grade)',
+    score: '82%',
+    duration: 'Apr 2017 – Mar 2020',
+  },
 ];
 
 const Education = () => {
